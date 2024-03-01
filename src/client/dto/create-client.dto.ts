@@ -1,4 +1,4 @@
-import { IsBoolean, IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsBoolean, IsBooleanString, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class CreateClientDto {
     @IsString()
@@ -13,6 +13,6 @@ export class CreateClientDto {
     @IsNotEmpty()
     monthyLimit : number
 
-    @IsBoolean()
+    @IsBooleanString()
     hasCable : boolean
 }
