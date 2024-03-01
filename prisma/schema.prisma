@@ -9,3 +9,11 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+model client {
+  id Int @id @default(autoincrement())
+  address String @unique
+  name String @db.VarChar(100)
+  monthlyLimit Int 
+  hasCable Boolean @default(true)
+}
