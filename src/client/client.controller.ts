@@ -8,8 +8,8 @@ export class ClientController {
   constructor(private readonly clientService: ClientService) {}
 
   @Post()
-  create(@Body() createClientDto: CreateClientDto) {
-    return this.clientService.create(createClientDto);
+  create(@Body() createClientDto: CreateClientDto, hasCable : boolean | null) {
+    return this.clientService.create(createClientDto, hasCable);
   }
 
   @Get()

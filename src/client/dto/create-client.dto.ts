@@ -12,7 +12,4 @@ export class CreateClientDto {
     @IsNumber()
     @IsNotEmpty()
     monthyLimit : number
-
-    @IsBooleanString()
-    hasCable : boolean
 }

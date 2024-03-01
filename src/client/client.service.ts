@@ -7,16 +7,25 @@ import { PrismaService } from 'src/prisma.service';
 export class ClientService {
   constructor(private readonly db : PrismaService) {}
 
-  create(createClientDto: CreateClientDto) {
+  create(createClientDto: CreateClientDto, hasCable : boolean | null) {
     if(createClientDto.monthyLimit < 50 && createClientDto.monthyLimit > 100){
       throw new UnauthorizedException('Monthly limit mennyisége nem megfelelő!')
+    }
+    if(hasCable){
+      return this.db.client.create({
+        data : {
+          address : createClientDto.address,
+          name : createClientDto.name,
+          monthlyLimit : createClientDto.monthyLimit,
+          hasCable : hasCable
+        }
+      })
     }
     return this.db.client.create({
       data : {
         address : createClientDto.address,
         name : createClientDto.name,
         monthlyLimit : createClientDto.monthyLimit,
-        hasCable : createClientDto.hasCable || true
       }
     })
   }
